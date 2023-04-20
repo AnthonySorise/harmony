@@ -12,28 +12,27 @@ const RotatedButton = styled(Button)`
   top: 50%;
 `;
 
-const MapButton = (props) => {
-    const ref = useRef(null);
+const MapButton = React.forwardRef((props, ref) => {
     return (
         <RotatedButton {...props} ref={ref}>
             Map
         </RotatedButton>
     );
-};
+});
 
 const Map = () => {
     const [isOpen, setIsOpen] = useState(false);
     const mapRef = useRef(null);
+    const buttonRef = useRef(null);
     const mapWidth = 400;
 
     const toggleMap = () => {
         const width = isOpen ? mapWidth : 0;
         gsap.to(mapRef.current, { width: width, duration: 0.5, ease: Power4.easeInOut });
 
-        const button = document.querySelector('.mapButton');
-        const right = isOpen ? 0 : button.clientHeight  ;
-        if (button) {
-            gsap.to(button, { right: right, duration: 0.5, ease: Power4.easeInOut });
+        if (buttonRef.current) {
+            const right = isOpen ? 0 : buttonRef.current.clientHeight;
+            gsap.to(buttonRef.current, { right: right, duration: 0.5, ease: Power4.easeInOut });
         }
 
         setIsOpen(!isOpen);
@@ -41,7 +40,7 @@ const Map = () => {
 
     return (
         <Box id="Map" ref={mapRef} sx={{ width: mapWidth + `px`, height: '100%', backgroundColor: 'red' }}>
-            <MapButton className='mapButton' variant='contained' onClick={toggleMap}>Close Map</MapButton>
+            <MapButton ref={buttonRef} variant='contained' onClick={toggleMap}>Close Map</MapButton>
         </Box>
     );
 };
