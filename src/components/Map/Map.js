@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import SectionLabel from '../SectionLabel'
 import { Box, Button } from '@mui/material';
 import { gsap, Power4 } from 'gsap';
-import './Map.scss';
 import { styled } from '@mui/material/styles';
+import './Map.scss';
 
 const RotatedButton = styled(Button)`
   transform: rotate(-90deg) translateX(50%) translateY(4px);
@@ -39,9 +40,10 @@ const Map = () => {
     };
 
     return (
-        <Box id="Map" ref={mapRef} sx={{ width: mapWidth + `px`, height: '100%', backgroundColor: 'red' }}>
-            <MapButton ref={buttonRef} variant='contained' onClick={toggleMap}>Close Map</MapButton>
-        </Box>
+            <Box id="Map" ref={mapRef} sx={{ width: mapWidth + `px`, height: '100%', backgroundColor: 'red' }}>
+                <SectionLabel text="Location Text"/>
+                <MapButton ref={buttonRef} variant='contained' onClick={toggleMap}>Close Map</MapButton>
+            </Box>
     );
 };
 
