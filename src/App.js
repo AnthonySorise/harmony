@@ -8,12 +8,19 @@ import { Container, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { gsap } from 'gsap';
 
+const scripture = [
+    {name:"Matthew"},
+    {name:"Mark"},
+    {name:"Luke"},
+    {name:"John"},
+]
+
 function App() {
   return (
     <>
     <Header></Header>
     <Container id="ContentContainer" sx={{display:"flex", height:'calc(100% - 64px)'}}>
-        <Books />
+        <Books scripture={scripture}/>
         <Map />
     </Container>
     </>

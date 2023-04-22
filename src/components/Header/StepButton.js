@@ -8,6 +8,7 @@ const StepButton = ({ direction, onClick, children }) => {
 
     return (
         <Button
+            sx={{ width: '132px' }}
             variant="contained"
             onClick={onClick}
             startIcon={isRightDirection ? null : <ArrowBackRoundedIcon />}

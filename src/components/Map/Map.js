@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import './Map.scss';
 
 const RotatedButton = styled(Button)`
-  transform: rotate(-90deg) translateX(50%) translateY(4px);
+  transform: rotate(-90deg) translateX(84%) translateY(4px);
   transform-origin: bottom;
   writing-mode: vertical-lr;
   max-height: 36.5px;
