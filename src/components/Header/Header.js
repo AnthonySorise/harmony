@@ -6,13 +6,14 @@ import Typography from '@mui/material/Typography';
 import StepButton from './StepButton'
 import './Header.scss'
 
-const Header = () => {
+const Header = ({incrementStep, decrementStep, step, maxSteps}) => {
     return (
         <AppBar position="static">
             <Toolbar>
                 <StepButton
                     direction="left"
-                    onClick={() => console.log('Previous step')}
+                    onClick={decrementStep}
+                    disabled={step == 0}
                 >Back</StepButton>
 
                 <Typography variant="h5" component="div" sx={{ margin: 'auto' }}>
@@ -21,7 +22,8 @@ const Header = () => {
 
                 <StepButton
                     direction="right"
-                    onClick={() => console.log('Next step')}
+                    onClick={incrementStep}
+                    disabled={step >= maxSteps}
                 >Forward</StepButton>
             </Toolbar>
         </AppBar>

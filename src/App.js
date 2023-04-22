@@ -8,23 +8,39 @@ import { Container, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { gsap } from 'gsap';
 
-const scripture = [
-    {name:"Matthew"},
-    {name:"Mark"},
-    {name:"Luke"},
-    {name:"John"},
+const books = [
+    { name: "Matthew" },
+    { name: "Mark" },
+    { name: "Luke" },
+    { name: "John" },
 ]
+const maxSteps = 50;//DO DO - remove and reference steps generated from API
 
 function App() {
-  return (
-    <>
-    <Header></Header>
-    <Container id="ContentContainer" sx={{display:"flex", height:'calc(100% - 64px)'}}>
-        <Books scripture={scripture}/>
-        <Map />
-    </Container>
-    </>
-  );
+    const [step, setStep] = useState(0);
+
+    useEffect(() => {
+        console.log(`Current step is: ${step}`);
+      }, [step]);
+
+    const incrementStep = ()=>{
+        const incrementedSteps = step+1;
+        setStep(incrementedSteps <= maxSteps ? incrementedSteps : maxSteps);
+    }
+    const decrementStep = ()=>{
+        const decrementedStep = step-1;
+        setStep(decrementedStep > -1 ? decrementedStep : 0);
+    }
+
+    return (
+        <>
+            <Header incrementStep={incrementStep} decrementStep={decrementStep} step={step} maxSteps={maxSteps} />
+            <Container id="ContentContainer" sx={{ display: "flex", height: 'calc(100% - 64px)' }}>
+                <Books books={books} />
+                <Map />
+            </Container>
+        </>
+    );
 }
 
 export default App;
